@@ -1,99 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login | University Portal</title>
+<?php
+// login.php
+declare(strict_types=1);
 
-  <!-- Your Tailwind or CSS build -->
-  <link rel="stylesheet" href="index-Dcy6qitJ.css">
-</head>
+require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/includes/auth.php';
 
-<body class="min-h-screen bg-gray-100 flex items-center justify-center">
+$errors = [];
+$next = $_GET['next'] ?? ($_POST['next'] ?? 'index.php');
 
-  <!-- ====== Login Card ====== -->
-  <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-md mx-4">
-    <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">Login</h2>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $token = $_POST['csrf'] ?? '';
+    if (!check_csrf($token)) {
+        $errors[] = 'Invalid CSRF token.';
+    } else {
+        $username = trim((string)($_POST['username'] ?? ''));
+        $password = trim((string)($_POST['password'] ?? ''));
 
-    <div class="space-y-4">
-      <select id="role" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500">
-        <option value="admin">Admin</option>
-        <option value="teacher">Teacher</option>
-        <option value="student">Student</option>
-      </select>
-
-      <input 
-        type="text" 
-        id="username" 
-        placeholder="Username"
-        class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
-      >
-
-      <input 
-        type="password" 
-        id="password" 
-        placeholder="Password"
-        class="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
-      >
-
-      <button 
-        id="loginBtn"
-        class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition"
-      >
-        Login
-      </button>
-    </div>
-
-    <p class="mt-4 text-center text-sm text-gray-500">
-      <a href="index.php" class="text-blue-600 hover:underline">← Return to Home</a>
-    </p>
-  </div>
-
-  <!-- ====== JavaScript (your code) ====== -->
-  <script>
-    // ====== Modal Controls (not used but required by your script) ======
-    const loginModal = null;
-    const loginLink = null;
-    const getStartedBtn = null;
-    const closeModal = null;
-    const loginBtn = document.getElementById("loginBtn");
-
-    // Demo credentials
-    const credentials = {
-      admin: { username: "admin", password: "admin123" },
-      teacher: { username: "teacher", password: "teacher123" },
-      student: { username: "student", password: "student123" }
-    };
-
-    // Login action
-    function login() {
-      const role = document.getElementById("role").value;
-      const username = document.getElementById("username").value.trim();
-      const password = document.getElementById("password").value.trim();
-
-      if (!username || !password) {
-        alert("Please enter username and password.");
-        return;
-      }
-
-        // Validate against demo credentials
-      if (!credentials[role]) {
-        alert("Invalid role selected.");
-        return;
-      }
-
-      if (
-        username === credentials[role].username &&
-        password === credentials[role].password
-      ) {
-        alert(`Logged in as ${role}: ${username}`);
-        window.location.href = `dashboard.php?role=${role}`;
-      } else {
-        alert("Invalid username or password. Try again.");
-      }
+        if ($username === '' || $password === '') {
+            $errors[] = 'Username and password are required.';
+        } else {
+            if (attempt_login_user($username, $password)) {
+                $role = current_user_role();
+                if ($role === 'admin') {
+                    header('Location: admin_dashboard.php');
+                    exit;
+                } elseif ($role === 'teacher') {
+                    header('Location: teacher_dashboard.php');
+                    exit;
+                } elseif ($role === 'student') {
+                    header('Location: student_dashboard.php');
+                    exit;
+                } else {
+                    header('Location: index.php');
+                    exit;
+                }
+            } else {
+                $errors[] = 'Invalid username or password.';
+            }
+        }
     }
+}
+?>
 
-    loginBtn.addEventListener("click", login);
-  </script>
-</body>
-</html>
+<?php require_once __DIR__ . '/includes/header.php'; 
+require_once __DIR__ . '/includes/navbar.php';
+
+?>
+
+
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="max-w-md w-full bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-2xl font-bold mb-4 text-center text-gray-900">Login</h2>
+
+    <?php if ($errors): ?>
+      <div class="mb-4 rounded-md bg-red-100 p-3 text-red-700">
+        <?php foreach ($errors as $err): ?>
+          <div><?php echo e($err); ?></div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+
+    <form method="post" novalidate class="space-y-4">
+      <input type="hidden" name="csrf" value="<?php echo e(csrf_token()); ?>">
+      <input type="hidden" name="next" value="<?php echo e($next); ?>">
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Username</label>
+        <input name="username"
+               class="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
+               value="<?php echo e($_POST['username'] ?? ''); ?>">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Password</label>
+        <input name="password" type="password"
+               class="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500">
+      </div>
+
+      <button type="submit"
+              class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
+        Sign In
+      </button>
+    </form>
+
+    <div class="mt-4 text-center text-sm text-gray-600">
+      <a href="index.php" class="text-blue-600 hover:underline">Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<?php require_once __DIR__ . '/includes/footer.php'; ?>
