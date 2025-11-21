@@ -70,21 +70,21 @@
     // Build nav based on role
     let dashboardLink = "";
     if (role === "admin") {
-      dashboardLink = '<a href="dashboard.html?role=admin" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
+      dashboardLink = '<a href="dashboard.php?role=admin" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
     } else if (role === "teacher") {
-      dashboardLink = '<a href="dashboard.html?role=teacher" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
+      dashboardLink = '<a href="dashboard.php?role=teacher" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
     } else if (role === "student") {
-      dashboardLink = '<a href="dashboard.html?role=student" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
+      dashboardLink = '<a href="dashboard.php?role=student" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
     } else {
-      dashboardLink = '<a href="dashboard.html" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
+      dashboardLink = '<a href="dashboard.php" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
     }
 
     // Inject links into nav
     navbar.innerHTML = `
       <div class="flex items-center space-x-4">
         ${dashboardLink}
-        <a href="admin.html" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md">Admin Panel</a>
-        <a href="index.html" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md">Logout</a>
+        <a href="admin.php" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md">Admin Panel</a>
+        <a href="index.php" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md">Logout</a>
       </div>
     `;
   </script>

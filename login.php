@@ -45,7 +45,7 @@
     </div>
 
     <p class="mt-4 text-center text-sm text-gray-500">
-      <a href="index.html" class="text-blue-600 hover:underline">← Return to Home</a>
+      <a href="index.php" class="text-blue-600 hover:underline">← Return to Home</a>
     </p>
   </div>
 
@@ -76,13 +76,18 @@
         return;
       }
 
-      // Validate against demo credentials
+        // Validate against demo credentials
+      if (!credentials[role]) {
+        alert("Invalid role selected.");
+        return;
+      }
+
       if (
         username === credentials[role].username &&
         password === credentials[role].password
       ) {
         alert(`Logged in as ${role}: ${username}`);
-        window.location.href = `dashboard.html?role=${role}`;
+        window.location.href = `dashboard.php?role=${role}`;
       } else {
         alert("Invalid username or password. Try again.");
       }

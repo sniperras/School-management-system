@@ -68,8 +68,8 @@
     const navbar = document.getElementById("navbar");
     navbar.innerHTML = `
       <div class="flex items-center space-x-4">
-        <a href="dashboard.html?role=${role}" class="text-purple-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>
-        <a href="index.html" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md">Logout</a>
+        <a href="dashboard.php?role=${role}" class="text-purple-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>
+        <a href="index.php" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md">Logout</a>
       </div>
     `;
   </script>

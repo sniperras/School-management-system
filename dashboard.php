@@ -28,21 +28,21 @@
     <div id="adminPanel" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
       <h2 class="text-xl font-bold text-gray-900 mb-2">Admin Panel</h2>
       <p class="text-gray-600 mb-4">Manage users, classes, and system settings.</p>
-      <a href="admin.html?role=admin" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Go to Admin</a>
+      <a href="admin.php?role=admin" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">Go to Admin</a>
     </div>
 
     <!-- Teacher Panel -->
     <div id="teacherPanel" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
       <h2 class="text-xl font-bold text-gray-900 mb-2">Teacher Panel</h2>
       <p class="text-gray-600 mb-4">View assigned classes, mark attendance, and upload grades.</p>
-      <a href="teacher.html?role=teacher" class="bg-purple-500 text-white px-4 py-2 rounded-md hover:shadow-lg transition">Go to Teacher</a>
+      <a href="teacher.php?role=teacher" class="bg-purple-500 text-white px-4 py-2 rounded-md hover:shadow-lg transition">Go to Teacher</a>
     </div>
 
     <!-- Student Panel -->
     <div id="studentPanel" class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
       <h2 class="text-xl font-bold text-gray-900 mb-2">Student Panel</h2>
       <p class="text-gray-600 mb-4">Check attendance, view grades, and download assignments.</p>
-      <a href="student.html?role=student" class="bg-green-500 text-white px-4 py-2 rounded-md hover:shadow-lg transition">Go to Student</a>
+      <a href="student.php?role=student" class="bg-green-500 text-white px-4 py-2 rounded-md hover:shadow-lg transition">Go to Student</a>
     </div>
   </main>
 
@@ -88,19 +88,19 @@
     // Build nav dynamically
     let dashboardLink = "";
     if (role === "admin") {
-      dashboardLink = '<a href="dashboard.html?role=admin" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
+      dashboardLink = '<a href="dashboard.php?role=admin" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
     } else if (role === "teacher") {
-      dashboardLink = '<a href="dashboard.html?role=teacher" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
+      dashboardLink = '<a href="dashboard.php?role=teacher" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
     } else if (role === "student") {
-      dashboardLink = '<a href="dashboard.html?role=student" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
+      dashboardLink = '<a href="dashboard.php?role=student" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
     } else {
-      dashboardLink = '<a href="dashboard.html" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
+      dashboardLink = '<a href="dashboard.php" class="text-blue-600 font-semibold hover:bg-gray-200 px-3 py-1 rounded-md">Dashboard</a>';
     }
 
     navbar.innerHTML = `
       <div class="flex items-center space-x-4">
         ${dashboardLink}
-        <a href="index.html" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md">Logout</a>
+        <a href="index.php" class="text-gray-700 hover:bg-gray-200 px-3 py-1 rounded-md">Logout</a>
       </div>
     `;
 
