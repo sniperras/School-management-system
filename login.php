@@ -4,6 +4,18 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/auth.php';
+// If user is already logged in → redirect to their dashboard
+if (is_logged_in()) {
+    $role = current_user_role();
+    $redirect = match ($role) {
+        'admin'   => 'admin_dashboard.php',
+        'teacher' => 'teacher_dashboard.php',
+        'student' => 'student_dashboard.php',
+        default   => 'index.php'
+    };
+    header("Location: $redirect");
+    exit;
+}
 
 $errors = [];
 $next = $_GET['next'] ?? ($_POST['next'] ?? 'index.php');
@@ -11,29 +23,24 @@ $next = $_GET['next'] ?? ($_POST['next'] ?? 'index.php');
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['csrf'] ?? '';
     if (!check_csrf($token)) {
-        $errors[] = 'Invalid CSRF token.';
+        $errors[] = 'Invalid security token. Please try again.';
     } else {
-        $username = trim((string)($_POST['username'] ?? ''));
-        $password = trim((string)($_POST['password'] ?? ''));
+        $username = trim($_POST['username'] ?? '');
+        $password = $_POST['password'] ?? '';
 
         if ($username === '' || $password === '') {
-            $errors[] = 'Username and password are required.';
+            $errors[] = 'Please enter both username and password.';
         } else {
             if (attempt_login_user($username, $password)) {
                 $role = current_user_role();
-                if ($role === 'admin') {
-                    header('Location: admin_dashboard.php');
-                    exit;
-                } elseif ($role === 'teacher') {
-                    header('Location: teacher_dashboard.php');
-                    exit;
-                } elseif ($role === 'student') {
-                    header('Location: student_dashboard.php');
-                    exit;
-                } else {
-                    header('Location: index.php');
-                    exit;
-                }
+                $redirect = match ($role) {
+                    'admin'   => 'admin_dashboard.php',
+                    'teacher' => 'teacher_dashboard.php',
+                    'student' => 'student_dashboard.php',
+                    default   => 'index.php'
+                };
+                header("Location: $redirect");
+                exit;
             } else {
                 $errors[] = 'Invalid username or password.';
             }
@@ -42,51 +49,101 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<?php require_once __DIR__ . '/includes/header.php'; 
-require_once __DIR__ . '/includes/navbar.php';
+<?php require_once __DIR__ . '/includes/head.php'; ?>
+<?php require_once __DIR__ . '/includes/nav.php'; ?>
 
-?>
+<title>Login | School Management System</title>
 
+<style>
+  .login-container {
+    min-height: calc(100vh - 200px);
+    background: linear-gradient(rgba(255,251,222,0.97), rgba(145,200,228,0.3)),
+                url('img/login-bg.jpg') center/cover no-repeat;
+  }
+</style>
 
-<div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="max-w-md w-full bg-white rounded-lg shadow-md p-6">
-    <h2 class="text-2xl font-bold mb-4 text-center text-gray-900">Login</h2>
+<!-- Main Login Section -->
+<section class="login-container flex items-center justify-center py-20">
+  <div class="w-full max-w-md mx-6">
+    <div data-aos="fade-up" class="bg-white/98 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-gray-100">
 
-    <?php if ($errors): ?>
-      <div class="mb-4 rounded-md bg-red-100 p-3 text-red-700">
-        <?php foreach ($errors as $err): ?>
-          <div><?php echo e($err); ?></div>
-        <?php endforeach; ?>
-      </div>
-    <?php endif; ?>
-
-    <form method="post" novalidate class="space-y-4">
-      <input type="hidden" name="csrf" value="<?php echo e(csrf_token()); ?>">
-      <input type="hidden" name="next" value="<?php echo e($next); ?>">
-
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Username</label>
-        <input name="username"
-               class="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500"
-               value="<?php echo e($_POST['username'] ?? ''); ?>">
+      <!-- Logo & Title -->
+      <div class="text-center mb-10">
+        <img src="img/school-logo.png" alt="School Logo" class="h-24 w-24 mx-auto rounded-full border-4 border-deepblue shadow-lg">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-deepblue mt-6">Welcome Back</h1>
+        <p class="text-xl text-midblue mt-3">Sign in to your SMS account</p>
       </div>
 
-      <div>
-        <label class="block text-sm font-medium text-gray-700">Password</label>
-        <input name="password" type="password"
-               class="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-blue-500">
+      <!-- Error Messages -->
+      <?php if ($errors): ?>
+        <div class="mb-8 bg-red-50 border border-red-200 text-red-700 px-6 py-4 rounded-2xl text-sm font-medium">
+          <?php foreach ($errors as $err): ?>
+            <div class="flex items-center gap-3">
+              <i class="fas fa-exclamation-triangle text-xl"></i>
+              <?= htmlspecialchars($err) ?>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+
+      <!-- Login Form -->
+      <form method="post" novalidate class="space-y-7">
+        <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
+        <input type="hidden" name="next" value="<?= e($next) ?>">
+
+        <div>
+          <label class="block text-sm font-bold text-deepblue mb-2">
+            <i class="fas fa-user text-midblue mr-2"></i> Username or Student/Staff ID
+          </label>
+          <input name="username" type="text" required autofocus
+                 value="<?= e($_POST['username'] ?? '') ?>"
+                 class="w-full px-6 py-5 border-2 border-gray-300 rounded-2xl focus:border-midblue focus:ring-4 focus:ring-lightblue/40 transition text-lg placeholder-gray-400"
+                 placeholder="e.g. john123 or admin2025">
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold text-deepblue mb-2">
+            <i class="fas fa-lock text-midblue mr-2"></i> Password
+          </label>
+          <input name="password" type="password" required
+                 class="w-full px-6 py-5 border-2 border-gray-300 rounded-2xl focus:border-midblue focus:ring-4 focus:ring-lightblue/40 transition text-lg"
+                 placeholder="Enter your secure password">
+        </div>
+
+        <button type="submit"
+                class="w-full bg-gradient-to-r from-deepblue to-midblue text-white font-bold text-xl py-6 rounded-2xl hover:shadow-2xl hover:scale-105 transition transform duration-300 uppercase tracking-wider flex items-center justify-center gap-3">
+          <i class="fas fa-sign-in-alt text-2xl"></i>
+          Sign In Securely
+        </button>
+      </form>
+
+      <!-- Quick Role Hints -->
+      <div class="mt-10 grid grid-cols-3 gap-4 text-center text-xs font-bold">
+        <div class="bg-red-50 text-red-700 py-4 rounded-xl border-2 border-red-200">
+          <i class="fas fa-user-shield text-xl"></i><br>Admin
+        </div>
+        <div class="bg-purple-50 text-purple-700 py-4 rounded-xl border-2 border-purple-200">
+          <i class="fas fa-chalkboard-teacher text-xl"></i><br>Teacher
+        </div>
+        <div class="bg-green-50 text-green-700 py-4 rounded-xl border-2 border-green-200">
+          <i class="fas fa-user-graduate text-xl"></i><br>Student
+        </div>
       </div>
 
-      <button type="submit"
-              class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition">
-        Sign In
-      </button>
-    </form>
-
-    <div class="mt-4 text-center text-sm text-gray-600">
-      <a href="index.php" class="text-blue-600 hover:underline">Back to Home</a>
+      <!-- Links -->
+      <div class="mt-10 text-center text-sm text-gray-600 space-y-3">
+        <a href="forgot_password.php" class="text-midblue hover:text-deepblue font-semibold hover:underline">
+          Forgot your password?
+        </a>
+        <div>
+          New here? 
+          <a href="register.php" class="text-deepblue font-bold hover:underline">Create an account</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
+</body>
+</html>

@@ -1,101 +1,59 @@
-<?php
-// announcements.php
-require_once __DIR__ . '/includes/header.php';
-require_once __DIR__ . '/includes/navbar.php';
+<?php require_once __DIR__ . '/includes/head.php'; ?>
+<?php require_once __DIR__ . '/includes/nav.php'; ?>
 
-$dataPath = __DIR__ . '/data/announcements.json';
-$announcements = read_json($dataPath, []);
+<title>Announcements | School Management System</title>
 
-$errors = [];
-
-// Handle add announcement
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'add_announcement') {
-    // Only allow admins to publish
-    if (!is_logged_in() || current_user_role() !== 'admin') {
-        $errors[] = 'You must be logged in as admin to publish an announcement.';
-    } else {
-        $token = $_POST['csrf'] ?? '';
-        if (!check_csrf($token)) {
-            $errors[] = 'Invalid CSRF token.';
-        } else {
-            $title = trim($_POST['title'] ?? '');
-            $body = trim($_POST['body'] ?? '');
-            $author = trim($_POST['author'] ?? 'Admin');
-
-            if ($title === '') $errors[] = 'Title is required.';
-            if ($body === '') $errors[] = 'Announcement body is required.';
-
-            if (empty($errors)) {
-                $item = [
-                    'id' => bin2hex(random_bytes(6)),
-                    'title' => $title,
-                    'body' => $body,
-                    'author' => $author,
-                    'created_at' => date('c'),
-                ];
-                array_unshift($announcements, $item);
-                if (!write_json($dataPath, $announcements)) {
-                    $errors[] = 'Failed to save announcement. Check file permissions.';
-                } else {
-                    header('Location: announcements.php');
-                    exit;
-                }
-            }
-        }
-    }
-}
-?>
-<section class="space-y-6">
-  <div class="bg-white rounded-lg shadow-md p-6">
-    <h2 class="text-2xl font-bold mb-2">Campus Announcements</h2>
-
-    <?php if (empty($announcements)): ?>
-      <p class="text-gray-600">No announcements yet.</p>
-    <?php else: ?>
-      <div class="space-y-4">
-        <?php foreach ($announcements as $a): ?>
-          <article class="p-4 border rounded">
-            <h3 class="text-xl font-semibold"><?php echo e($a['title']); ?></h3>
-            <p class="text-sm text-gray-600">
-              By <?php echo e($a['author']); ?> · <?php echo e(date('F j, Y', strtotime($a['created_at']))); ?>
-            </p>
-            <div class="mt-2 text-gray-700"><?php echo nl2br(e($a['body'])); ?></div>
-          </article>
-        <?php endforeach; ?>
-      </div>
-    <?php endif; ?>
+<!-- Hero -->
+<section class="bg-gradient-to-br from-deepblue to-midblue text-white py-28">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    <h1 class="text-5xl md:text-7xl font-extrabold" data-aos="fade-up">School Announcements</h1>
+    <p class="text-xl md:text-2xl mt-6 opacity-95" data-aos="fade-up" data-aos-delay="200">
+      Stay updated with the latest news, events, and important notices
+    </p>
   </div>
+</section>
 
-  <?php if (is_logged_in() && current_user_role() === 'admin'): ?>
-    <div class="bg-white rounded-lg shadow-md p-6">
-      <h3 class="text-xl font-bold mb-2">Publish Announcement</h3>
+<!-- Announcements List -->
+<section class="py-20 bg-gray-50">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-      <?php if ($errors): ?>
-        <div class="mb-3 text-sm text-red-700">
-          <?php foreach ($errors as $err) echo '<div>'.e($err).'</div>'; ?>
+      <!-- Sample Announcement -->
+      <div data-aos="fade-up" class="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <img src="img/announcement1.jpg" alt="Event" class="w-full h-56 object-cover">
+        <div class="p-8">
+          <span class="text-sm text-midblue font-semibold">March 15, 2025</span>
+          <h3 class="text-2xl font-bold text-deepblue mt-2">2025/2026 Resumption Date</h3>
+          <p class="text-gray-700 mt-4">All students are expected to resume on Monday, September 8, 2025. Welcome back!</p>
+          <a href="#" class="inline-block mt-6 text-lightblue font-bold hover:text-midblue transition">Read More →</a>
         </div>
-      <?php endif; ?>
+      </div>
 
-      <form method="post" novalidate>
-        <input type="hidden" name="csrf" value="<?php echo e(csrf_token()); ?>">
-        <input type="hidden" name="action" value="add_announcement">
+      <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <img src="img/announcement2.jpg" alt="Event" class="w-full h-56 object-cover">
+        <div class="p-8">
+          <span class="text-sm text-midblue font-semibold">March 10, 2025</span>
+          <h3 class="text-2xl font-bold text-deepblue mt-2">Inter-House Sports 2025</h3>
+          <p class="text-gray-700 mt-4">Get ready for the biggest sporting event of the year! March 27–29.</p>
+          <a href="#" class="inline-block mt-6 text-lightblue font-bold hover:text-midblue transition">View Schedule →</a>
+        </div>
+      </div>
 
-        <label class="block mb-2 text-sm">Title
-          <input name="title" class="w-full border rounded px-2 py-1 mt-1" required>
-        </label>
+      <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <img src="img/announcement3.jpg" alt="Event" class="w-full h-56 object-cover">
+        <div class="p-8">
+          <span class="text-sm text-midblue font-semibold">March 5, 2025</span>
+          <h3 class="text-2xl font-bold text-deepblue mt-2">Mid-Term Break</h3>
+          <p class="text-gray-700 mt-4">Students will proceed on mid-term break from April 11–15, 2025.</p>
+          <a href="#" class="inline-block mt-6 text-lightblue font-bold hover:text-midblue transition">Details →</a>
+        </div>
+      </div>
 
-        <label class="block mb-2 text-sm">Author
-          <input name="author" class="w-full border rounded px-2 py-1 mt-1" value="Admin">
-        </label>
-
-        <label class="block mb-2 text-sm">Body
-          <textarea name="body" rows="6" class="w-full border rounded px-2 py-1 mt-1" required></textarea>
-        </label>
-
-        <button class="bg-blue-600 text-white px-4 py-2 rounded-md">Publish</button>
-      </form>
+      <!-- Add more announcements as needed -->
     </div>
-  <?php endif; ?>
+  </div>
 </section>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
+</body>
+</html>
