@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>School Management System | SMS</title>
+  <title>Student Management System | SMS</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>

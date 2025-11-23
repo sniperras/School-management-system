@@ -10,7 +10,7 @@ $user = current_user();
   <div class="max-w-7xl mx-auto px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
     <a href="index.php" class="flex items-center gap-3 hover:opacity-90 transition" data-aos="fade-down">
       <img src="img/school-logo.png" alt="School Logo" class="h-10 w-10 rounded-full border-2 border-white">
-      <span class="font-bold text-base">SCHOOL MANAGEMENT SYSTEM</span>
+      <span class="font-bold text-base">STUDENT MANAGEMENT SYSTEM</span>
     </a>
 
     <div class="flex flex-wrap items-center gap-4 justify-center md:justify-end">
@@ -36,11 +36,12 @@ $user = current_user();
 <nav class="bg-cream shadow-lg sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
     <div class="hidden lg:flex items-center gap-10 font-bold text-deepblue uppercase text-sm tracking-wider">
-      <a href="programs.php" class="hover:text-midblue transition">Programs & Degrees</a>
-      <a href="admissions.php" class="hover:text-midblue transition">Admissions</a>
-      <a href="alumni.php" class="hover:text-midblue transition">Alumni</a>
-      <a href="announcements.php" class="hover:text-midblue transition">Announcements</a>
-      <a href="contact_us.php" class="hover:text-midblue transition">Contact Us</a>
+      <a href="programs.php" class="hover:text-lightblue transition">Programs & Degrees</a>
+      <a href="admissions.php" class="hover:text-lightblue transition">Admissions</a>
+      <a href="alumni.php" class="hover:text-lightblue transition">Alumni</a>
+      <a href="announcements.php" class="hover:text-lightblue transition">Announcements</a>
+      <a href="timetable.php" class="hover:text-lightblue transition">Timetable</a>
+      <a href="contact_us.php" class="hover:text-lightblue transition">Contact Us</a>
     </div>
 
     <button id="mobile-menu-btn" class="lg:hidden text-deepblue text-3xl">

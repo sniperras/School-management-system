@@ -1,3 +1,10 @@
+<?php
+declare(strict_types=1);
+require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/db.php';
+?>
+
 <?php require_once __DIR__ . '/includes/head.php'; ?>
 <?php require_once __DIR__ . '/includes/nav.php'; ?>
 
@@ -65,28 +72,28 @@
       <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-green-500">
         <h3 class="text-2xl font-bold text-deepblue mb-6">Primary (Grades 1–6)</h3>
         <ul class="space-y-4 text-gray-700">
-          <li><i class="fas fa-check text-green-600 mr-3"></i>Birth Certificate</li>
-          <li><i class="fas fa-check text-green-600 mr-3"></i>2 Passport Photographs</li>
-          <li><i class="fas fa-check text-green-600 mr-3"></i>Previous School Report (if applicable)</li>
-          <li><i class="fas fa-check text-green-600 mr-3"></i>Immunization Record</li>
+          <li>Birth Certificate</li>
+          <li>2 Passport Photographs</li>
+          <li>Previous School Report (if applicable)</li>
+          <li>Immunization Record</li>
         </ul>
       </div>
       <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-blue-500">
         <h3 class="text-2xl font-bold text-deepblue mb-6">Junior Secondary (Grades 7–9)</h3>
         <ul class="space-y-4 text-gray-700">
-          <li><i class="fas fa-check text-blue-600 mr-3"></i>Primary School Leaving Certificate</li>
-          <li><i class="fas fa-check text-blue-600 mr-3"></i>Entrance Exam Result</li>
-          <li><i class="fas fa-check text-blue-600 mr-3"></i>Transfer Certificate</li>
-          <li><i class="fas fa-check text-blue-600 mr-3"></i>Recommendation Letter</li>
+          <li>Primary School Leaving Certificate</li>
+          <li>Entrance Exam Result</li>
+          <li>Transfer Certificate</li>
+          <li>Recommendation Letter</li>
         </ul>
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-purple-600">
         <h3 class="text-2xl font-bold text-deepblue mb-6">Senior Secondary (Grades 10–12)</h3>
         <ul class="space-y-4 text-gray-700">
-          <li><i class="fas fa-check text-purple-600 mr-3"></i>JSCE/BECE Result</li>
-          <li><i class="fas fa-check text-purple-600 mr-3"></i>Strong Academic Record</li>
-          <li><i class="fas fa-check text-purple-600 mr-3"></i>Subject Combination Form</li>
-          <li><i class="fas fa-check text-purple-600 mr-3"></i>Parent/Guardian Consent</li>
+          <li>JSCE/BECE Result</li>
+          <li>Strong Academic Record</li>
+          <li>Subject Combination Form</li>
+          <li>Parent/Guardian Consent</li>
         </ul>
       </div>
     </div>
@@ -103,7 +110,7 @@
       Secure your child's future in one of the best schools in the region
     </p>
     <div class="flex flex-col sm:flex-row gap-8 justify-center" data-aos="fade-up" data-aos-delay="400">
-      <a href="application_form.php" class="bg-lightblue text-deepblue text-2xl font-bold px-16 py-8 rounded-2xl hover:bg-white transition transform hover:scale-110 shadow-2xl">
+      <a href="admin/application_form.php" class="bg-lightblue text-deepblue text-2xl font-bold px-16 py-8 rounded-2xl hover:bg-white transition transform hover:scale-110 shadow-2xl">
         Start Online Application
       </a>
       <a href="contact.php" class="bg-transparent border-4 border-white text-white text-2xl font-bold px-16 py-8 rounded-2xl hover:bg-white hover:text-deepblue transition">
@@ -122,17 +129,14 @@
     <h3 class="text-3xl font-bold text-deepblue mb-8">Need Help?</h3>
     <div class="grid md:grid-cols-3 gap-10">
       <div class="p-8 bg-cream rounded-2xl shadow-lg">
-        <i class="fas fa-phone text-5xl text-midblue mb-4"></i>
         <p class="font-bold text-deepblue text-xl">Call Admissions</p>
         <p class="text-2xl mt-2">+234 800 123 4567</p>
       </div>
       <div class="p-8 bg-cream rounded-2xl shadow-lg">
-        <i class="fas fa-envelope text-5xl text-midblue mb-4"></i>
         <p class="font-bold text-deepblue text-xl">Email Us</p>
         <p class="text-2xl mt-2">admissions@school.edu.ng</p>
       </div>
       <div class="p-8 bg-cream rounded-2xl shadow-lg">
-        <i class="fas fa-map-marker-alt text-5xl text-midblue mb-4"></i>
         <p class="font-bold text-deepblue text-xl">Visit Campus</p>
         <p class="text-lg mt-2">123 Education Avenue, Lagos</p>
       </div>

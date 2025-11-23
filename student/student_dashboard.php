@@ -1,41 +1,23 @@
 <?php
-// student_dashboard.php
+// student/student_dashboard.php
 declare(strict_types=1);
 
-require_once __DIR__ . '/includes/auth.php';
-require_once __DIR__ . '/includes/functions.php';
+// Correct paths: go up one level to root includes/
+require_once __DIR__ . '/../includes/auth.php';
+require_once __DIR__ . '/../includes/functions.php';
 
+// Redirect if not logged in
 if (!is_logged_in()) {
-    header("Location: login.php");
-    exit;
-}
-
-// Optional: Extra layer — only allow correct role
-$allowed = match (basename($_SERVER['PHP_SELF'])) {
-    'admin_dashboard.php'   => 'admin',
-    'teacher_dashboard.php' => 'teacher',
-    'student_dashboard.php' => 'student',
-    default                 => null
-};
-
-if ($allowed && current_user_role() !== $allowed) {
-    // Trying to access wrong dashboard → redirect to correct one
-    $correct = match (current_user_role()) {
-        'admin'   => 'admin_dashboard.php',
-        'teacher' => 'teacher_dashboard.php',
-        'student' => 'student_dashboard.php',
-        default   => 'index.php'
-    };
-    header("Location: $correct");
+    header("Location: ../login.php");
     exit;
 }
 
 // Restrict access to students only
-if (!is_logged_in() || current_user_role() !== 'student') {
+if (current_user_role() !== 'student') {
     $redirect = match (current_user_role()) {
-        'admin'   => 'admin_dashboard.php',
-        'teacher' => 'teacher_dashboard.php',
-        default   => 'index.php'
+        'admin'   => '../admin/dashboard.php',
+        'teacher' => '../teacher/teacher_dashboard.php',
+        default   => '../index.php'
     };
     header("Location: $redirect");
     exit;
@@ -74,6 +56,10 @@ $user = current_user();
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  
+  <style>
+    .e { escape: <?= json_encode(e('test')) ?> }
+  </style>
 </head>
 <body class="font-sans antialiased text-gray-800 bg-cream min-h-screen">
 
@@ -81,15 +67,15 @@ $user = current_user();
   <header class="bg-deepblue text-white shadow-xl">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-4">
-        <img src="img/school-logo.png" alt="School Logo" class="h-12 w-12 rounded-full border-4 border-white">
+        <img src="../img/school-logo.png" alt="School Logo" class="h-12 w-12 rounded-full border-4 border-white object-cover">
         <div>
           <h1 class="text-xl font-bold">SCHOOL MANAGEMENT SYSTEM</h1>
           <p class="text-xs opacity-90">Student Portal</p>
         </div>
       </div>
       <div class="flex items-center gap-6 text-sm">
-        <span class="hidden md:block">Welcome, <strong class="text-lightblue"><?= e($user['display_name'] ?? $user['name']) ?></strong></span>
-        <a href="logout.php" class="bg-lightblue text-deepblue px-5 py-2 rounded-lg font-bold hover:bg-midblue hover:text-white transition">
+        <span class="hidden md:block">Welcome, <strong class="text-lightblue"><?= htmlspecialchars($user['display_name'] ?? $user['name'] ?? 'Student', ENT_QUOTES) ?></strong></span>
+        <a href="../logout.php" class="bg-lightblue text-deepblue px-5 py-2 rounded-lg font-bold hover:bg-midblue hover:text-white transition">
           <i class="fas fa-sign-out-alt mr-2"></i>Logout
         </a>
       </div>
@@ -104,7 +90,7 @@ $user = current_user();
       <div class="flex flex-col md:flex-row items-center justify-between gap-8">
         <div>
           <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-            Hello, <?= e($user['display_name'] ?? 'Student') ?>!
+            Hello, <?= htmlspecialchars($user['display_name'] ?? $user['name'] ?? 'Student', ENT_QUOTES) ?>!
           </h1>
           <p class="text-xl mt-3 opacity-95">Ready to learn and grow today?</p>
         </div>
@@ -141,7 +127,7 @@ $user = current_user();
         </div>
         <div class="p-8">
           <p class="text-gray-600 mb-6">Check your exam results, GPA, and download report cards.</p>
-          <a href="student_grades.php" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-xl hover:bg-indigo-700 transition transform hover:scale-105 shadow-lg">
+          <a href="exam_results.php" class="inline-block bg-blue-600 text-white font-bold px-8 py-4 rounded-xl hover:bg-indigo-700 transition transform hover:scale-105 shadow-lg">
             View Grades
           </a>
         </div>
@@ -183,7 +169,7 @@ $user = current_user();
         </div>
         <div class="p-8">
           <p class="text-gray-600 mb-6">Stay updated with school news, events, and notices.</p>
-          <a href="announcements.php" class="inline-block bg-teal-600 text-white font-bold px-8 py-4 rounded-xl hover:bg-cyan-700 transition transform hover:scale-105 shadow-lg">
+          <a href="../announcements.php" class="inline-block bg-teal-600 text-white font-bold px-8 py-4 rounded-xl hover:bg-cyan-700 transition transform hover:scale-105 shadow-lg">
             Read Announcements
           </a>
         </div>
@@ -206,7 +192,8 @@ $user = current_user();
     </div>
   </main>
 
-  <?php require_once __DIR__ . '/includes/footer.php'; ?>
+  <!-- Footer -->
+  <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 
   <script>
     AOS.init({ once: true, duration: 1000, easing: 'ease-out-quart' });

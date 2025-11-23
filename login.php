@@ -34,9 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (attempt_login_user($username, $password)) {
                 $role = current_user_role();
                 $redirect = match ($role) {
-                    'admin'   => 'admin_dashboard.php',
-                    'teacher' => 'teacher_dashboard.php',
-                    'student' => 'student_dashboard.php',
+                    'admin'   => 'admin/dashboard.php',
+                    'teacher' => 'teacher/teacher_dashboard.php',
+                    'student' => 'student/student_dashboard.php',
                     default   => 'index.php'
                 };
                 header("Location: $redirect");
