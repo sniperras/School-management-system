@@ -21,7 +21,7 @@
           </div>
           <div>
             <h2 class="text-2xl font-extrabold leading-tight">
-              STUDENT<br>
+              SCHOOL<br>
               <span class="text-lightblue">MANAGEMENT</span><br>
               SYSTEM
             </h2>
@@ -118,7 +118,7 @@
     <!-- Bottom Bar -->
     <div class="border-t border-lightblue/30 pt-8 text-center">
       <p class="text-lg">
-        © <?= date('Y') ?> <span class="text-lightblue font-bold">Student Management System</span>. 
+        © <?= date('Y') ?> <span class="text-lightblue font-bold">School Management System</span>. 
         All rights reserved.
       </p>
       <p class="text-sm opacity-80 mt-3">

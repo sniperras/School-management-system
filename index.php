@@ -30,7 +30,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
   <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-20">
     <div data-aos="fade-up">
       <h1 class="text-5xl md:text-6xl lg:text-7xl font-extrabold text-deepblue leading-tight">
-      STUDENT<br><span class="text-midblue">MANAGEMENT</span><br>SYSTEM
+      SCHOOL<br><span class="text-midblue">MANAGEMENT</span><br>SYSTEM
       </h1>
       <p class="text-2xl md:text-3xl font-bold text-midblue mt-6">Streamline. Educate. Excel.</p>
       <p class="text-lg md:text-xl text-gray-700 mt-8 max-w-2xl leading-relaxed">

@@ -10,7 +10,7 @@ $user = current_user();
   <div class="max-w-7xl mx-auto px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
     <a href="index.php" class="flex items-center gap-3 hover:opacity-90 transition" data-aos="fade-down">
       <img src="img/school-logo.png" alt="School Logo" class="h-10 w-10 rounded-full border-2 border-white">
-      <span class="font-bold text-base">STUDENT MANAGEMENT SYSTEM</span>
+      <span class="font-bold text-base">SCHOOL MANAGEMENT SYSTEM</span>
     </a>
 
     <div class="flex flex-wrap items-center gap-4 justify-center md:justify-end">
