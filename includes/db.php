@@ -3,15 +3,15 @@
 declare(strict_types=1);
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'root');          // default XAMPP
-define('DB_PASS', '');              // default XAMPP (empty)
+define('DB_USERNAME', 'root');          // default XAMPP
+define('DB_PASSWORD', '');              // default XAMPP (empty)
 define('DB_NAME', 'sms_db');
 
 try {
     $pdo = new PDO(
         "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4",
-        DB_USER,
-        DB_PASS,
+        DB_USERNAME,
+        DB_PASSWORD,
         [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
