@@ -176,7 +176,7 @@ $user = current_user();
         </div>
         <div class="p-8">
           <p class="text-gray-600 mb-6">Send notices to students, parents & staff.</p>
-          <a href="announcements.php" class="block text-center bg-yellow-600 text-white font-bold py-4 rounded-xl hover:bg-amber-700 transition shadow-lg">
+          <a href="admin_announcement.php" class="block text-center bg-yellow-600 text-white font-bold py-4 rounded-xl hover:bg-amber-700 transition shadow-lg">
             Create Post
           </a>
         </div>
