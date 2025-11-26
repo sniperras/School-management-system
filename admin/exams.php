@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if (!is_logged_in() || current_user_role() !== 'admin') {
     header("Location: ../login.php"); exit;
@@ -57,6 +58,7 @@ if ($_POST['admin_action'] ?? false) {
                 <i class='fas fa-check-circle text-7xl mb-4'></i><br>
                 Exam Published Successfully!<br><span class='text-sm'>All students have been notified.</span>
             </div>";
+            log_action($pdo, $_SESSION['user_id'] ?? null, "Exam Published Successfully ID {$exam_id}");
         } else {
             $pdo->prepare("UPDATE exams SET status = 'rejected', admin_comment = ? WHERE id = ?")
                 ->execute([$comments, $exam_id]);
@@ -65,6 +67,7 @@ if ($_POST['admin_action'] ?? false) {
                 <i class='fas fa-times-circle text-7xl mb-4'></i><br>
                 Exam Rejected<br><span class='text-sm'>Teacher notified with your feedback.</span>
             </div>";
+            log_action($pdo, $_SESSION['user_id'] ?? null, "Exam Rejected {$exam_id}");
         }
     }
 }

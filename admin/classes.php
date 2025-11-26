@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if (!is_logged_in() || current_user_role() !== 'admin') {
     header("Location: ../login.php");
@@ -43,6 +44,7 @@ if (isset($_POST['assign_teacher'])) {
         $stmt->execute([$teacher_id, $section_id, $subject_name]);
         $success = "Teacher assigned successfully!";
     }
+    log_action($pdo, $_SESSION['user_id'] ?? null, "assign teacher ID {$teacher_id}");
 }
 
 // ==================== DELETE CLASS ====================
@@ -50,6 +52,7 @@ if (isset($_POST['delete_class'])) {
     $id = (int)$_POST['class_id'];
     $pdo->prepare("DELETE FROM classes WHERE id = ?")->execute([$id]);
     $success = "Class deleted!";
+    log_action($pdo, $_SESSION['user_id'] ?? null, "delete class id {$id}");
 }
 
 // ==================== DELETE SECTION ====================
@@ -57,6 +60,7 @@ if (isset($_POST['delete_section'])) {
     $id = (int)$_POST['section_id'];
     $pdo->prepare("DELETE FROM sections WHERE id = ?")->execute([$id]);
     $success = "Section deleted!";
+    log_action($pdo, $_SESSION['user_id'] ?? null, "delete section ID {$id}");
 }
 
 // ==================== REMOVE ASSIGNMENT ====================
@@ -64,6 +68,7 @@ if (isset($_POST['remove_assignment'])) {
     $id = (int)$_POST['assignment_id'];
     $pdo->prepare("DELETE FROM class_assignments WHERE id = ?")->execute([$id]);
     $success = "Assignment removed!";
+    log_action($pdo, $_SESSION['user_id'] ?? null, "remove assignment ID {$id}");
 }
 
 // Load data

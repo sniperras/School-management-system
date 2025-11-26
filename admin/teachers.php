@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if (!is_logged_in() || current_user_role() !== 'admin') {
     header("Location: ../login.php");
@@ -41,6 +42,7 @@ if (isset($_POST['add_teacher'])) {
         $stmt->execute([$teacher_id, $first_name, $middle_name, $last_name, $gender, $phone, $email, $department, $qualification, $photo, $hire_date]);
 
         $success = "Teacher added: <strong>$teacher_id</strong>";
+        log_action($pdo, $_SESSION['user_id'] ?? null, "Teacher added ID {$teacher_id}");
     } catch (Exception $e) {
         $error = "Error: " . $e->getMessage();
     }
@@ -66,6 +68,7 @@ if (isset($_POST['edit_teacher'])) {
         $stmt->execute([$first_name, $middle_name, $last_name, $phone, $email, $department, $qualification, $id]);
     }
     $success = "Teacher updated successfully!";
+    log_action($pdo, $_SESSION['user_id'] ?? null, "Teacher updated successfully ID {$id}");
 }
 
 // ==================== DELETE TEACHER ====================
@@ -73,6 +76,7 @@ if (isset($_POST['delete_teacher'])) {
     $id = (int)$_POST['teacher_id'];
     $pdo->prepare("DELETE FROM teachers WHERE id = ?")->execute([$id]);
     $success = "Teacher deleted!";
+    log_action($pdo, $_SESSION['user_id'] ?? null, "Teacher deleted ID {$id}");
 }
 
 // ==================== ASSIGN SUBJECT ====================
@@ -84,6 +88,7 @@ if (isset($_POST['assign_subject'])) {
     $stmt = $pdo->prepare("INSERT INTO teacher_subjects (teacher_id, subject_name, class_level) VALUES (?, ?, ?)");
     $stmt->execute([$teacher_id, $subject_name, $class_level]);
     $success = "Subject assigned!";
+    log_action($pdo, $_SESSION['user_id'] ?? null, "Subject assigned ID {$teacher_id}");
 }
 
 // ==================== UPDATE SUBJECT ====================
@@ -95,6 +100,7 @@ if (isset($_POST['update_subject'])) {
     $stmt = $pdo->prepare("UPDATE teacher_subjects SET subject_name = ?, class_level = ? WHERE id = ?");
     $stmt->execute([$subject_name, $class_level, $sub_id]);
     $success = "Subject updated!";
+    log_action($pdo, $_SESSION['user_id'] ?? null, "Subject updated ID {$sub_id}");
 }
 
 // ==================== DELETE SUBJECT ====================
@@ -102,6 +108,7 @@ if (isset($_POST['delete_subject'])) {
     $sub_id = (int)$_POST['subject_id'];
     $pdo->prepare("DELETE FROM teacher_subjects WHERE id = ?")->execute([$sub_id]);
     $success = "Subject removed!";
+    log_action($pdo, $_SESSION['user_id'] ?? null, "Subject removed ID {$sub_id}");
 }
 
 // Load all teachers

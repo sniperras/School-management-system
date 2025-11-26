@@ -229,4 +229,5 @@ header('Pragma: public');
 header('Expires: 0');
 
 echo $pdf->Output('', 'S');
+log_action($pdo, $_SESSION['user_id'] ?? null, "download documents ID {$filename}");
 exit;

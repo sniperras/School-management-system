@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../../includes/auth.php';
 require_once __DIR__ . '/../../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if (!is_logged_in()) {
     header("Location: ../../login.php");
@@ -38,12 +39,14 @@ if (isset($_POST['action']) && isset($_POST['exam_id'])) {
                     // Update exam status to dept_approved
                     $pdo->prepare("UPDATE exams SET status = 'dept_approved' WHERE id = ?")->execute([$exam_id]);
                     $message = "<div class='alert alert-success'>Exam sent to Admin for final approval!</div>";
+                log_action($pdo, $_SESSION['user_id'] ?? null, "Exam sent to Admin ID {$exam_id}");
                 }
             } elseif ($user_role === 'admin') {
                 // Admin giving final approval
                 if (in_array($exam['status'], ['dept_approved', 'pending'])) {
                     $pdo->prepare("UPDATE exams SET status = 'published', published = 1 WHERE id = ?")->execute([$exam_id]);
                     $message = "<div class='alert alert-success'>Exam Published Successfully!</div>";
+                    log_action($pdo, $_SESSION['user_id'] ?? null, "Exam Published Successfully ID {$exam_id}");
                 }
             }
         } elseif ($action === 'reject') {
@@ -53,6 +56,7 @@ if (isset($_POST['action']) && isset($_POST['exam_id'])) {
 
             $pdo->prepare("UPDATE exams SET status = 'rejected' WHERE id = ?")->execute([$exam_id]);
             $message = "<div class='alert alert-danger'>Exam Rejected!</div>";
+            log_action($pdo, $_SESSION['user_id'] ?? null, "Exam Rejected ID {$exam_id}");
         }
     }
 }

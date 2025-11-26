@@ -1,5 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
+
 $date = $_GET['date'] ?? date('Y-m-d');
 $type = $_GET['type'] ?? 'student';
 
@@ -20,6 +22,7 @@ if ($type == 'student') {
 }
 $stmt->execute([$date]);
 $rows = $stmt->fetchAll();
+log_action($pdo, $_SESSION['user_id'] ?? null, "print attendance ID {$date}");
 ?>
 <!DOCTYPE html>
 <html>

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if (!is_logged_in() || current_user_role() !== 'admin') {
     header("Location: ../login.php");
@@ -37,6 +38,7 @@ if (isset($_POST['record_student_attendance'])) {
     if ($check->rowCount() == 0) {
         $stmt = $pdo->prepare("INSERT INTO student_attendance (student_id, section_id, course_name, attendance_date, signature) VALUES (?, ?, ?, ?, ?)");
         $stmt->execute([$student_id, $section_id, $course_name, $attendance_date, $signature]);
+        log_action($pdo, $_SESSION['user_id'] ?? null, "Student attendance recorded {$student_id}");
         $success = "Student attendance recorded!";
     } else {
         $error = "Already recorded!";

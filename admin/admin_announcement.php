@@ -2,6 +2,7 @@
 session_start();
 require_once __DIR__ . '/../includes/auth.php';
 require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
 
 if (!is_logged_in() || current_user_role() !== 'admin') {
     header("Location: ../login.php"); exit;
@@ -36,7 +37,6 @@ if (isset($_POST['submit'])) {
                                        VALUES (?, ?, ?, ?, ?, ?, NOW())");
                 // created_by = admin's user_id (safe now — no foreign key!)
                 $stmt->execute([$title, $content, $type, $image, $image_type, $_SESSION['user_id'] ?? null]);
-
                 $feedback = '<div class="bg-green-100 border-4 border-green-500 text-green-800 p-10 rounded-2xl text-center font-bold text-4xl shadow-2xl">
                                 <i class="fas fa-check-circle text-8xl mb-4 block text-green-600"></i>
                                 Published Successfully!
@@ -47,6 +47,8 @@ if (isset($_POST['submit'])) {
                                 Error: ' . htmlspecialchars($e->getMessage()) . '
                              </div>';
             }
+             log_action($pdo, $_SESSION['user_id'] ?? null, "admin announcement {$title}");
+               
         }
     }
 }

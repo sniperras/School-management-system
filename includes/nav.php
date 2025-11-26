@@ -23,7 +23,7 @@ $user = current_user();
       <?php endif; ?>
 
       <form action="search.php" method="get" class="relative">
-        <input name="q" type="text" placeholder="Search students, teachers..." 
+        <input name="q" type="text" placeholder="Search Keywords..." 
                class="px-4 py-2 rounded text-black text-xs w-48 focus:outline-none focus:ring-2 focus:ring-midblue">
         <button type="submit" class="absolute right-3 top-2.5 text-gray-600">
           <i class="fa fa-search"></i>

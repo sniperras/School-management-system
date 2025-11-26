@@ -32,7 +32,7 @@ require_once __DIR__ . '/includes/nav.php';
   <div class="max-w-7xl mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
       <div data-aos="fade-up"><p class="text-6xl font-extrabold text-deepblue">25+</p><p class="text-xl text-midblue mt-2">Years of Excellence</p></div>
-      <div data-aos="fade-up" data-aos-delay="100"><p class="text-6xl font-extrabold text-deepblue">15,000+</p><p class="text-xl text-midblue mt-2">Proud Alumni</p></div>
+      <div data-aos="fade-up" data-aos-delay="100"><p class="text-6xl font-extrabold text-deepblue">150+</p><p class="text-xl text-midblue mt-2">Proud Alumni</p></div>
       <div data-aos="fade-up" data-aos-delay="200"><p class="text-6xl font-extrabold text-deepblue">40+</p><p class="text-xl text-midblue mt-2">Countries Represented</p></div>
       <div data-aos="fade-up" data-aos-delay="300"><p class="text-6xl font-extrabold text-deepblue">100%</p><p class="text-xl text-midblue mt-2">Success Stories</p></div>
     </div>

@@ -108,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $previous_university, $bachelor_cgpa,
                     $grade_12_doc, $grade_10_doc, $transcript_doc, $bachelor_degree, $passport_photo
                 ]);
+                log_action($pdo, $_SESSION['user_id'] ?? null, "application form {$application_id}");
                 $success = true;
             } catch (Exception $e) {
                 $errors[] = 'Application failed. Please try again.';

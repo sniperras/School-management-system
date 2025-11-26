@@ -27,6 +27,7 @@ if (!$app) {
 function singleDocUrl($field) {
     global $id;
     return "download_documents.php?id={$id}&single=" . urlencode($field);
+    
 }
 ?>
 

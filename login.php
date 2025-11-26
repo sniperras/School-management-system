@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit"
                 class="w-full bg-gradient-to-r from-deepblue to-midblue text-white font-bold text-xl py-6 rounded-2xl hover:shadow-2xl hover:scale-105 transition transform duration-300 uppercase tracking-wider flex items-center justify-center gap-3">
           <i class="fas fa-sign-in-alt text-2xl"></i>
-          Sign In Securely
+          Sign In
         </button>
       </form>
 
