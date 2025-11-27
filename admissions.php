@@ -14,7 +14,7 @@ require_once __DIR__ . '/includes/db.php';
 <!-- Hero Section -->
 <section class="relative bg-gradient-to-br from-deepblue via-midblue to-indigo-800 text-white py-32 overflow-hidden">
   <div class="absolute inset-0 opacity-20">
-    <img src="img/students-welcome.jpg" alt="Welcome Students" class="w-full h-full object-cover">
+    <img src="img/students-classroom.png" alt="Welcome Students" class="w-full h-full object-cover">
   </div>
   <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
     <h1 class="text-5xl md:text-7xl font-extrabold leading-tight" data-aos="fade-up">
