@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['csrf'] ?? '';
     if (!check_csrf($token)) {
         $errors[] = 'Invalid security token. Please try again.';
-    } else {
+} else {
         $username = trim($_POST['username'] ?? '');
         $password = $_POST['password'] ?? '';
 
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           <input name="username" type="text" required autofocus
                  value="<?= e($_POST['username'] ?? '') ?>"
                  class="w-full px-6 py-5 border-2 border-gray-300 rounded-2xl focus:border-midblue focus:ring-4 focus:ring-lightblue/40 transition text-lg placeholder-gray-400"
-                 placeholder="e.g. john123 or admin2025">
+                 placeholder="e.g. selam123 or abebe2025">
         </div>
 
         <div>
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           </label>
           <input name="password" type="password" required
                  class="w-full px-6 py-5 border-2 border-gray-300 rounded-2xl focus:border-midblue focus:ring-4 focus:ring-lightblue/40 transition text-lg"
-                 placeholder="Enter your secure password">
+                 placeholder="Enter your password">
         </div>
 
         <button type="submit"

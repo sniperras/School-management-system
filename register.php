@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <label class="block text-lg font-bold text-deepblue mb-3">Full Name <span class="text-red-600">*</span></label>
               <input name="name" type="text" required value="<?= htmlspecialchars($_POST['name']??'') ?>" 
                      class="w-full px-6 py-5 border-2 rounded-2xl focus:border-midblue transition text-lg" 
-                     placeholder="Natnael Bizuneh Zenebe">
+                     placeholder="Abebe Gemechu G/Hiwot">
               <p class="text-sm text-gray-500 mt-2">Must match your official first name exactly</p>
             </div>
 
