@@ -192,8 +192,7 @@ $user = current_user();
     </div>
   </main>
 
-  <!-- Footer -->
-  <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+
 
   <script>
     AOS.init({ once: true, duration: 1000, easing: 'ease-out-quart' });

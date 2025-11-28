@@ -69,7 +69,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <!-- Logo & Title -->
       <div class="text-center mb-10">
-        <img src="img/school-logo.png" alt="School Logo" class="h-24 w-24 mx-auto rounded-full border-4 border-deepblue shadow-lg">
+        <img src="img/school-logo.png" 
+     alt="School Logo" 
+     class="h-24 w-24 mx-auto rounded-full border-4 border-deepblue shadow-lg mb-6 bg-deepblue">
+
         <h1 class="text-4xl md:text-5xl font-extrabold text-deepblue mt-6">Welcome Back</h1>
         <p class="text-xl text-midblue mt-3">Sign in to your SMS account</p>
       </div>
