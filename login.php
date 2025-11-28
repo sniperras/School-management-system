@@ -1,16 +1,18 @@
 <?php
-// login.php
+// login.php – Login with Username OR Student/Staff ID
 declare(strict_types=1);
 
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/db.php'; // We need $pdo here
+
 // If user is already logged in → redirect to their dashboard
 if (is_logged_in()) {
     $role = current_user_role();
     $redirect = match ($role) {
-        'admin'   => 'admin_dashboard.php',
-        'teacher' => 'teacher_dashboard.php',
-        'student' => 'student_dashboard.php',
+        'admin'   => 'admin/dashboard.php',
+        'teacher' => 'teacher/teacher_dashboard.php',
+        'student' => 'student/student_dashboard.php',
         default   => 'index.php'
     };
     header("Location: $redirect");
@@ -24,15 +26,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $token = $_POST['csrf'] ?? '';
     if (!check_csrf($token)) {
         $errors[] = 'Invalid security token. Please try again.';
-} else {
-        $username = trim($_POST['username'] ?? '');
-        $password = $_POST['password'] ?? '';
+    } else {
+        $login_input = trim($_POST['username'] ?? ''); // This can be username OR ID
+        $password    = $_POST['password'] ?? '';
 
-        if ($username === '' || $password === '') {
-            $errors[] = 'Please enter both username and password.';
+        if ($login_input === '' || $password === '') {
+            $errors[] = 'Please enter both username/ID and password.';
         } else {
-            if (attempt_login_user($username, $password)) {
-                $role = current_user_role();
+            // Try to find user by username first
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? LIMIT 1");
+            $stmt->execute([$login_input]);
+            $user = $stmt->fetch();
+
+            // If not found by username → try by student_id (works for both student & teacher)
+            if (!$user) {
+                $stmt = $pdo->prepare("SELECT * FROM users WHERE student_id = ? LIMIT 1");
+                $stmt->execute([$login_input]);
+                $user = $stmt->fetch();
+            }
+
+            // Now verify password
+            if ($user && password_verify($password, $user['password_hash'])) {
+                // Success! Log the user in
+                $_SESSION['user_id']   = $user['id'];
+                $_SESSION['role']      = $user['role'];
+                $_SESSION['username']  = $user['username'];
+                $_SESSION['name']      = $user['name'];
+                $_SESSION['logged_in'] = true;
+
+                $role = $user['role'];
                 $redirect = match ($role) {
                     'admin'   => 'admin/dashboard.php',
                     'teacher' => 'teacher/teacher_dashboard.php',
@@ -42,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header("Location: $redirect");
                 exit;
             } else {
-                $errors[] = 'Invalid username or password.';
+                $errors[] = 'Invalid username, ID, or password.';
             }
         }
     }
@@ -70,8 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <!-- Logo & Title -->
       <div class="text-center mb-10">
         <img src="img/school-logo.png" 
-     alt="School Logo" 
-     class="h-24 w-24 mx-auto rounded-full border-4 border-deepblue shadow-lg mb-6 bg-deepblue">
+             alt="School Logo" 
+             class="h-24 w-24 mx-auto rounded-full border-4 border-deepblue shadow-lg mb-6 bg-deepblue">
 
         <h1 class="text-4xl md:text-5xl font-extrabold text-deepblue mt-6">Welcome Back</h1>
         <p class="text-xl text-midblue mt-3">Sign in to your SMS account</p>
@@ -91,17 +113,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
       <!-- Login Form -->
       <form method="post" novalidate class="space-y-7">
-        <input type="hidden" name="csrf" value="<?= e(csrf_token()) ?>">
-        <input type="hidden" name="next" value="<?= e($next) ?>">
+        <input type="hidden" name="csrf" value="<?= csrf_token() ?>">
+        <input type="hidden" name="next" value="<?= htmlspecialchars($next) ?>">
 
         <div>
           <label class="block text-sm font-bold text-deepblue mb-2">
             <i class="fas fa-user text-midblue mr-2"></i> Username or Student/Staff ID
           </label>
           <input name="username" type="text" required autofocus
-                 value="<?= e($_POST['username'] ?? '') ?>"
+                 value="<?= htmlspecialchars($_POST['username'] ?? '') ?>"
                  class="w-full px-6 py-5 border-2 border-gray-300 rounded-2xl focus:border-midblue focus:ring-4 focus:ring-lightblue/40 transition text-lg placeholder-gray-400"
-                 placeholder="e.g. selam123 or abebe2025">
+                 placeholder="e.g. selam123, ADMA/1234/25 or tch/567/23">
+          <p class="text-xs text-gray-500 mt-2 text-left">You can use your username or your official ID</p>
         </div>
 
         <div>
