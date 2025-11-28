@@ -34,7 +34,7 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
       </h1>
       <p class="text-2xl md:text-3xl font-bold text-midblue mt-6">Streamline. Educate. Excel.</p>
       <p class="text-lg md:text-xl text-gray-700 mt-8 max-w-2xl leading-relaxed">
-        A complete digital solution to manage students, teachers, attendance, marks, classes, announcements, and parent communication — all in one powerful, easy-to-use platform.
+        A complete digital solution to manage students, teachers, attendance, marks, classes, and announcements — all in one powerful, easy-to-use platform.
       </p>
 
       <div class="mt-12 flex flex-wrap gap-6">
@@ -68,9 +68,12 @@ $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
       </div>
     </div>
 
-    <div data-aos="zoom-in-left" data-aos-delay="300" class="flex justify-center lg:justify-end">
-      <img src="img/students-classroom.png" alt="Happy students in classroom" class="w-full max-w-2xl drop-shadow-2xl rounded-2xl object-cover">
-    </div>
+   <div data-aos="zoom-in-left" data-aos-delay="300" class="flex justify-center lg:justify-end">
+  <img src="img/students-classroom.png" 
+       alt="Happy students in classroom" 
+       class="w-full max-w-2xl h-96 lg:h-[500px] drop-shadow-2xl rounded-2xl object-cover">
+</div>
+
   </div>
 </section>
 
