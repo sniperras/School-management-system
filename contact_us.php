@@ -1,48 +1,86 @@
 <?php
 // contact_us.php
 declare(strict_types=1);
+
 require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/functions.php';
+require_once __DIR__ . '/includes/db.php'; // provides $pdo
 
-$user = current_user();
-$dataPath = __DIR__ . '/data/messages.json';
+// use current_user if you need pre-filling (not required)
+$user = function_exists('current_user') ? current_user() : null;
+
 $errors = [];
 $success = false;
 
+// Handle POST -> insert into DB
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'send_message') {
-    $token = $_POST['csrf'] ?? '';
+    $token = (string)($_POST['csrf'] ?? '');
     if (!check_csrf($token)) {
         $errors[] = 'Security check failed. Please try again.';
     } else {
-        $name    = trim($_POST['name'] ?? '');
-        $email   = trim($_POST['email'] ?? '');
-        $subject = trim($_POST['subject'] ?? 'General Inquiry');
-        $message = trim($_POST['message'] ?? '');
+        $name    = trim((string)($_POST['name'] ?? ''));
+        $email   = trim((string)($_POST['email'] ?? ''));
+        $subject = trim((string)($_POST['subject'] ?? 'General Inquiry'));
+        $message = trim((string)($_POST['message'] ?? ''));
 
-        if ($name === '')    $errors[] = 'Please enter your full name.';
-        if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = 'A valid email address is required.';
-        if ($message === '') $errors[] = 'Please write your message.';
+        // Validation
+        if ($name === '') {
+            $errors[] = 'Please enter your full name.';
+        } elseif (mb_strlen($name) > 255) {
+            $errors[] = 'Full name is too long (max 255 chars).';
+        }
 
+        if ($email === '' || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = 'A valid email address is required.';
+        } elseif (mb_strlen($email) > 255) {
+            $errors[] = 'Email is too long (max 255 chars).';
+        }
+
+        if ($subject === '') {
+            $subject = 'General Inquiry';
+        } elseif (mb_strlen($subject) > 255) {
+            $errors[] = 'Subject is too long (max 255 chars).';
+        }
+
+        if ($message === '') {
+            $errors[] = 'Please write your message.';
+        }
+
+        // If no errors -> insert into messages table
         if (empty($errors)) {
-            $messages = read_json($dataPath, []);
-            $entry = [
-                'id'         => bin2hex(random_bytes(8)),
-                'name'       => $name,
-                'email'      => $email,
-                'subject'    => $subject,
-                'message'    => $message,
-                'created_at' => date('c'),
-            ];
-            array_unshift($messages, $entry);
-            write_json($dataPath, $messages);
+            try {
+                $stmt = $pdo->prepare("INSERT INTO contact_messages (name, email, subject, message, created_at) VALUES (:name, :email, :subject, :message, :created_at)");
+                $stmt->execute([
+                    ':name'       => $name,
+                    ':email'      => $email,
+                    ':subject'    => $subject,
+                    ':message'    => $message,
+                    ':created_at' => date('Y-m-d H:i:s'),
+                ]);
 
-            $success = true;
-            header('Location: contact_us.php?sent=1');
-            exit;
+                // Optionally notify admin here (email) or log_action()
+                if (function_exists('log_action') && function_exists('current_user_id')) {
+                    // user id might be 0 for guests
+                    log_action($pdo, current_user_id() ?: null, "New contact message from {$name} ({$email})", [
+                        'message_id' => (int)$pdo->lastInsertId()
+                    ]);
+                }
+
+                // Redirect to avoid double POST
+                header('Location: contact_us.php?sent=1');
+                exit;
+            } catch (PDOException $e) {
+                // Do not expose raw DB errors to users in production
+                $errors[] = 'Failed to save your message. Please try again later.';
+                // log detailed error
+                error_log('contact_us DB error: ' . $e->getMessage());
+            }
         }
     }
 }
-$sent = isset($_GET['sent']) && $_GET['sent'] == '1';
+
+$sent = isset($_GET['sent']) && (string)$_GET['sent'] === '1';
+
 ?>
 
 <?php require_once __DIR__ . '/includes/head.php'; ?>
@@ -70,7 +108,7 @@ $sent = isset($_GET['sent']) && $_GET['sent'] == '1';
     <div data-aos="fade-right">
       <h2 class="text-4xl font-bold text-deepblue mb-8">Send Us a Message</h2>
 
-      <?php if ($success || $sent): ?>
+      <?php if ($sent): ?>
         <div class="mb-8 p-6 bg-green-50 border border-green-200 text-green-800 rounded-2xl flex items-center gap-4">
           <i class="fas fa-check-circle text-4xl"></i>
           <div>
@@ -80,11 +118,12 @@ $sent = isset($_GET['sent']) && $_GET['sent'] == '1';
         </div>
       <?php endif; ?>
 
-      <?php if ($errors): ?>
+      <?php if (!empty($errors)): ?>
         <div class="mb-6 p-5 bg-red-50 border border-red-200 text-red-700 rounded-2xl">
           <?php foreach ($errors as $err): ?>
-            <div class="flex items-center gap-2">
-              <i class="fas fa-exclamation-triangle"></i> <?= htmlspecialchars($err) ?>
+            <div class="flex items-center gap-2 mb-2">
+              <i class="fas fa-exclamation-triangle"></i>
+              <?= e($err) ?>
             </div>
           <?php endforeach; ?>
         </div>
@@ -97,13 +136,15 @@ $sent = isset($_GET['sent']) && $_GET['sent'] == '1';
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label class="block text-sm font-bold text-deepblue mb-2">Full Name</label>
-            <input name="name" type="text" required value="<?= e($_POST['name'] ?? '') ?>"
+            <input name="name" type="text" required
+                   value="<?= e($_POST['name'] ?? ($user['name'] ?? '')) ?>"
                    class="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:border-midblue focus:ring-4 focus:ring-lightblue/30 transition"
                    placeholder="John Doe">
           </div>
           <div>
             <label class="block text-sm font-bold text-deepblue mb-2">Email Address</label>
-            <input name="email" type="email" required value="<?= e($_POST['email'] ?? '') ?>"
+            <input name="email" type="email" required
+                   value="<?= e($_POST['email'] ?? ($user['email'] ?? '')) ?>"
                    class="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:border-midblue focus:ring-4 focus:ring-lightblue/30 transition"
                    placeholder="john@example.com">
           </div>
@@ -111,7 +152,8 @@ $sent = isset($_GET['sent']) && $_GET['sent'] == '1';
 
         <div>
           <label class="block text-sm font-bold text-deepblue mb-2">Subject</label>
-          <input name="subject" type="text" value="<?= e($_POST['subject'] ?? '') ?>"
+          <input name="subject" type="text"
+                 value="<?= e($_POST['subject'] ?? '') ?>"
                  class="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:border-midblue focus:ring-4 focus:ring-lightblue/30 transition"
                  placeholder="Admissions Inquiry">
         </div>

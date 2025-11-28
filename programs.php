@@ -11,7 +11,7 @@
       Programs & Degrees
     </h1>
     <p class="text-xl md:text-2xl mt-6 max-w-3xl mx-auto opacity-95" data-aos="fade-up" data-aos-delay="200">
-      Explore our comprehensive academic programs designed to nurture talent and inspire success
+      Explore our diverse academic offerings designed to cultivate knowledge, innovation, and global leadership
     </p>
   </div>
 </section>
@@ -20,21 +20,21 @@
 <main class="max-w-7xl mx-auto px-6 py-16">
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
 
-    <!-- Primary School -->
+    <!-- Undergraduate Programs -->
     <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border-t-8 border-green-500">
       <div class="bg-gradient-to-br from-green-500 to-emerald-600 text-white p-10 text-center">
-        <i class="fas fa-child text-6xl mb-4"></i>
-        <h3 class="text-3xl font-bold">Primary School</h3>
-        <p class="text-lg mt-2">Grades 1–6</p>
+        <i class="fas fa-graduation-cap text-6xl mb-4"></i>
+        <h3 class="text-3xl font-bold">Undergraduate Programs</h3>
+        <p class="text-lg mt-2">Bachelor’s Degrees</p>
       </div>
       <div class="p-8 space-y-4">
         <p class="text-gray-700 leading-relaxed">
-          A strong foundation in core subjects with emphasis on creativity, critical thinking, and character development.
+          A strong foundation in academic disciplines with emphasis on research, critical thinking, and professional readiness.
         </p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li>English, Math, Science</li>
-          <li>Art, Music & Physical Education</li>
-          <li>Moral & Civic Education</li>
+          <li>Science & Technology (CS, IT, Engineering)</li>
+          <li>Business & Economics (Accounting, Marketing, Entrepreneurship)</li>
+          <li>Arts & Humanities (English, History, Media)</li>
         </ul>
         <a href="#" class="block mt-6 bg-green-600 text-white font-bold py-4 rounded-xl hover:bg-emerald-700 transition text-center">
           Learn More
@@ -42,21 +42,21 @@
       </div>
     </div>
 
-    <!-- Junior Secondary -->
+    <!-- Postgraduate Programs -->
     <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border-t-8 border-blue-500">
       <div class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-10 text-center">
-        <i class="fas fa-book-reader text-6xl mb-4"></i>
-        <h3 class="text-3xl font-bold">Junior Secondary</h3>
-        <p class="text-lg mt-2">Grades 7–9</p>
+        <i class="fas fa-university text-6xl mb-4"></i>
+        <h3 class="text-3xl font-bold">Postgraduate Programs</h3>
+        <p class="text-lg mt-2">Master’s Degrees</p>
       </div>
       <div class="p-8 space-y-4">
         <p class="text-gray-700 leading-relaxed">
-          Preparing students for senior secondary with rigorous academic training and skill development.
+          Advanced academic training and specialization for career advancement and research excellence.
         </p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li>Integrated Science & ICT</li>
-          <li>Pre-vocational Studies</li>
-          <li>National Curriculum + Extracurriculars</li>
+          <li>MBA & MSc in Data Science</li>
+          <li>MA in International Relations</li>
+          <li>MSc in Public Health & Education Leadership</li>
         </ul>
         <a href="#" class="block mt-6 bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-indigo-700 transition text-center">
           View Curriculum
@@ -64,87 +64,92 @@
       </div>
     </div>
 
-    <!-- Senior Secondary - Science -->
+    <!-- Doctoral Programs -->
     <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border-t-8 border-purple-600">
       <div class="bg-gradient-to-br from-purple-500 to-pink-600 text-white p-10 text-center">
         <i class="fas fa-flask text-6xl mb-4"></i>
-        <h3 class="text-3xl font-bold">Senior Secondary - Science</h3>
-        <p class="text-lg mt-2">Grades 10–12</p>
+        <h3 class="text-3xl font-bold">Doctoral Programs</h3>
+        <p class="text-lg mt-2">PhD Studies</p>
       </div>
       <div class="p-8 space-y-4">
         <p class="text-gray-700 leading-relaxed">
-          Advanced STEM-focused program for future doctors, engineers, and scientists.
+          Rigorous research-focused programs designed to produce thought leaders and innovators.
         </p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li>Physics, Chemistry, Biology</li>
-          <li>Further Mathematics & Computer Science</li>
-          <li>WAEC & JAMB Preparation</li>
+          <li>PhD in Engineering & Applied Sciences</li>
+          <li>PhD in Economics & Development Studies</li>
+          <li>PhD in Social Sciences & Humanities</li>
         </ul>
         <a href="#" class="block mt-6 bg-purple-600 text-white font-bold py-4 rounded-xl hover:bg-pink-700 transition text-center">
-          Explore Science Track
+          Explore PhD Track
         </a>
       </div>
     </div>
 
-    <!-- Senior Secondary - Arts & Commercial -->
+    <!-- Professional & Vocational -->
     <div data-aos="fade-up" data-aos-delay="400" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border-t-8 border-orange-500">
       <div class="bg-gradient-to-br from-orange-500 to-red-600 text-white p-10 text-center">
-        <i class="fas fa-palette text-6xl mb-4"></i>
-        <h3 class="text-3xl font-bold">Senior Secondary - Arts & Commercial</h3>
-        <p class="text-lg mt-2">Grades 10–12</p>
-      </div>
-      <div class="p-8 space-y-4">
-        <p class="text-gray-700 leading-relaxed">
-          For future lawyers, entrepreneurs, journalists, and creative leaders.
-        </p>
-        <ul class="space-y-2 text-sm text-gray-600">
-          <li>Government, Literature, Economics</li>
-          <li>Accounting, Commerce, CRS/IRS</li>
-          <li>University Admission Guidance</li>
-        </ul>
-        <a href="#" class="block mt-6 bg-orange-600 text-white font-bold py-4 rounded-xl hover:bg-red-700 transition text-center">
-          Explore Arts Track
-        </a>
-      </div>
-    </div>
-
-    <!-- Vocational & Technical -->
-    <div data-aos="fade-up" data-aos-delay="500" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border-t-8 border-teal-500">
-      <div class="bg-gradient-to-br from-teal-500 to-cyan-600 text-white p-10 text-center">
         <i class="fas fa-tools text-6xl mb-4"></i>
-        <h3 class="text-3xl font-bold">Vocational Programs</h3>
+        <h3 class="text-3xl font-bold">Professional & Vocational</h3>
         <p class="text-lg mt-2">Skill-Based Training</p>
       </div>
       <div class="p-8 space-y-4">
         <p class="text-gray-700 leading-relaxed">
-          Hands-on training in ICT, Catering, Fashion Design, and Electrical Installation.
+          Industry-aligned programs offering certifications and practical training for career readiness.
         </p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li>NABTEB Certification</li>
-          <li>Industry Partnerships</li>
-          <li>Entrepreneurship Focus</li>
+          <li>ICT & Networking</li>
+          <li>Hospitality & Tourism</li>
+          <li>Fashion Design & Electrical Technology</li>
         </ul>
-        <a href="#" class="block mt-6 bg-teal-600 text-white font-bold py-4 rounded-xl hover:bg-cyan-700 transition text-center">
+        <a href="#" class="block mt-6 bg-orange-600 text-white font-bold py-4 rounded-xl hover:bg-red-700 transition text-center">
           Discover Vocational
         </a>
       </div>
     </div>
 
-    <!-- International Pathway -->
-    <div data-aos="fade-up" data-aos-delay="600" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border-t-8 border-yellow-500">
-      <div class="bg-gradient-to-br from-yellow-500 to-amber-600 text-white p-10 text-center">
-        <i class="fas fa-globe text-6xl mb-4"></i>
-        <h3 class="text-3xl font-bold">International Pathway</h3>
-        <p class="text-lg mt-2">IGCSE & SAT Prep</p>
+        <!-- College of Distance Education -->
+    <div data-aos="fade-up" data-aos-delay="500" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border-t-8 border-indigo-500">
+      <div class="bg-gradient-to-br from-indigo-500 to-blue-600 text-white p-10 text-center">
+        <i class="fas fa-laptop-house text-6xl mb-4"></i>
+        <h3 class="text-3xl font-bold">College of Distance Education</h3>
+        <p class="text-lg mt-2">Flexible Learning Opportunities</p>
       </div>
       <div class="p-8 space-y-4">
         <p class="text-gray-700 leading-relaxed">
-          Cambridge IGCSE and SAT preparation for students aiming for universities abroad.
+          Admas University’s College of Distance Education offers flexible, accessible programs to meet evolving educational needs. 
         </p>
         <ul class="space-y-2 text-sm text-gray-600">
-          <li>Cambridge Certified Teachers</li>
-          <li>University Placement Support</li>
-          <li>Scholarship Guidance</li>
+          <li>Business Management</li>
+          <li>Agricultural Economics</li>
+          <li>Educational Planning & Management</li>
+          <li>Marketing Management</li>
+          <li>Economics</li>
+          <li>Rural Development & Agricultural Extension</li>
+          <li>Accounting & Finance</li>
+        </ul>
+        <a href="#" class="block mt-6 bg-indigo-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition text-center">
+          Explore Distance Programs
+        </a>
+      </div>
+    </div>
+
+
+    <!-- International Pathway -->
+    <div data-aos="fade-up" data-aos-delay="500" class="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 border-t-8 border-yellow-500">
+      <div class="bg-gradient-to-br from-yellow-500 to-amber-600 text-white p-10 text-center">
+        <i class="fas fa-globe text-6xl mb-4"></i>
+        <h3 class="text-3xl font-bold">International Pathway</h3>
+        <p class="text-lg mt-2">Global Prep</p>
+      </div>
+      <div class="p-8 space-y-4">
+        <p class="text-gray-700 leading-relaxed">
+          Global opportunities for students aiming to study abroad or pursue international careers.
+        </p>
+        <ul class="space-y-2 text-sm text-gray-600">
+          <li>Cambridge IGCSE & A-Level Prep</li>
+          <li>SAT, GRE & GMAT Preparation</li>
+          <li>Exchange Programs & Scholarships</li>
         </ul>
         <a href="#" class="block mt-6 bg-yellow-600 text-white font-bold py-4 rounded-xl hover:bg-amber-700 transition text-center">
           Go International
@@ -155,9 +160,9 @@
   </div>
 
   <!-- Call to Action -->
-  <div class="text-center mt-20" data-aos="fade-up" data-aos-delay="700">
+  <div class="text-center mt-20" data-aos="fade-up" data-aos-delay="600">
     <h2 class="text-4xl font-bold text-deepblue mb-6">Ready to Begin Your Journey?</h2>
-    <p class="text-xl text-gray-700 mb-10">Join a community committed to excellence in education</p>
+    <p class="text-xl text-gray-700 mb-10">Join a community committed to excellence in higher education</p>
     <div class="flex flex-col sm:flex-row gap-6 justify-center">
       <a href="admissions.php" class="bg-deepblue text-white px-12 py-6 rounded-xl text-xl font-bold hover:bg-midblue transition transform hover:scale-105 shadow-2xl">
         Apply for Admission

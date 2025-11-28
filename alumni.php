@@ -3,13 +3,18 @@ require_once __DIR__ . '/includes/head.php';
 require_once __DIR__ . '/includes/nav.php'; 
 ?>
 
-<!-- Page-specific title (optional – overrides the default in head.php) -->
+<!-- Page-specific title -->
 <title>Alumni | School Management System</title>
 
 <style>
   .hero-bg {
     background: linear-gradient(to right, rgba(70,130,169,0.95), rgba(116,155,194,0.9)),
-                url('img/alumni-hero.jpg') center/cover no-repeat;
+                url('img/alumni-hero.jpg?v=2') center/cover no-repeat;
+  }
+  /* Fallback to ensure AOS elements are visible even if JS fails */
+  [data-aos] {
+    opacity: 1;
+    transition: opacity 0.6s ease, transform 0.6s ease;
   }
 </style>
 
@@ -46,24 +51,27 @@ require_once __DIR__ . '/includes/nav.php';
       Our Pride: Notable Alumni
     </h2>
     <div class="grid md:grid-cols-3 gap-12">
+      <!-- Alumni 1 -->
       <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-3xl shadow-2xl overflow-hidden text-center hover:-translate-y-4 transition">
-        <img src="img/alumni1.jpg" alt="Dr. Aisha Bello" class="w-full h-80 object-cover">
+        <img src="img/alumni1.jpg?v=2" alt="Dr. Aisha Bello" class="w-full h-80 object-cover object-top">
         <div class="p-8">
           <h3 class="text-2xl font-bold text-deepblue">Dr. Aisha Bello</h3>
           <p class="text-midblue font-semibold">Class of 2008</p>
           <p class="text-gray-700 mt-4">Neurosurgeon • Harvard Medical School<br>Rhodes Scholar</p>
         </div>
       </div>
+      <!-- Alumni 2 -->
       <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-3xl shadow-2xl overflow-hidden text-center hover:-translate-y-4 transition">
-        <img src="img/alumni2.jpg" alt="Engr. Chike Obi" class="w-full h-80 object-cover">
+        <img src="img/alumni2.png?v=2" alt="Engr. Chike Obi" class="w-full h-80 object-cover object-top">
         <div class="p-8">
           <h3 class="text-2xl font-bold text-deepblue">Engr. Chike Obi</h3>
           <p class="text-midblue font-semibold">Class of 2012</p>
           <p class="text-gray-700 mt-4">CEO, TechNova Africa<br>Forbes 30 Under 30</p>
         </div>
       </div>
+      <!-- Alumni 3 -->
       <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-3xl shadow-2xl overflow-hidden text-center hover:-translate-y-4 transition">
-        <img src="img/alumni3.jpg" alt="Barr. Funmi Adeyemi" class="w-full h-80 object-cover">
+        <img src="img/alumni3.jpeg?v=2" alt="Barr. Funmi Adeyemi" class="w-full h-80 object-cover object-top">
         <div class="p-8">
           <h3 class="text-2xl font-bold text-deepblue">Barr. Funmi Adeyemi</h3>
           <p class="text-midblue font-semibold">Class of 2005</p>
@@ -86,8 +94,8 @@ require_once __DIR__ . '/includes/nav.php';
         <i class="fas fa-user-plus text-6xl mb-6"></i>
         <h3 class="text-2xl font-bold">Register as Alumni</h3>
       </a>
-      <a href="alumni_events.php" class="bg-white/10 backdrop-blur-lg p-10 rounded-3xl hover:bg-white/20 transition transform hover:scale-105">
-        <i class="fas fa-calendar-heart text-6xl mb-6"></i>
+      <a href="/sms/announcements.php" class="bg-white/10 backdrop-blur-lg p-10 rounded-3xl hover:bg-white/20 transition transform hover:scale-105">
+        <i class="fas fa-calendar-alt text-6xl mb-6"></i>
         <h3 class="text-2xl font-bold">Upcoming Reunions</h3>
       </a>
       <a href="alumni_giveback.php" class="bg-white/10 backdrop-blur-lg p-10 rounded-3xl hover:bg-white/20 transition transform hover:scale-105">
@@ -110,18 +118,24 @@ require_once __DIR__ . '/includes/nav.php';
           <div><p class="font-bold text-deepblue">Tolu Adekunle</p><p class="text-sm text-midblue">Class of 2010 • Google Engineer</p></div>
         </div>
       </div>
-      <div data-aos="fade-up" data-aos-delay="100" class="bg-cream p-8 rounded-3xl shadow-xl">
+           <div data-aos="fade-up" data-aos-delay="100" class="bg-cream p-8 rounded-3xl shadow-xl">
         <p class="text-lg italic text-gray-700">"The foundation I received here opened doors to Oxford and beyond. Forever grateful."</p>
         <div class="mt-6 flex items-center gap-4">
           <div class="w-16 h-16 bg-gray-300 rounded-full"></div>
-          <div><p class="font-bold text-deepblue">Chioma Okonkwo</p><p class="text-sm text-midblue">Class of 2015 • Oxford PhD</p></div>
+          <div>
+            <p class="font-bold text-deepblue">Chioma Okonkwo</p>
+            <p class="text-sm text-midblue">Class of 2015 • Oxford PhD</p>
+          </div>
         </div>
       </div>
       <div data-aos="fade-up" data-aos-delay="200" class="bg-cream p-8 rounded-3xl shadow-xl">
         <p class="text-lg italic text-gray-700">"From prefect to CEO — everything started here. Proud to call this my alma mater."</p>
         <div class="mt-6 flex items-center gap-4">
           <div class="w-16 h-16 bg-gray-300 rounded-full"></div>
-          <div><p class="font-bold text-deepblue">David Okafor</p><p class="text-sm text-midblue">Class of 2007 • CEO, PayStack</p></div>
+          <div>
+            <p class="font-bold text-deepblue">David Okafor</p>
+            <p class="text-sm text-midblue">Class of 2007 • CEO, PayStack</p>
+          </div>
         </div>
       </div>
     </div>
@@ -140,5 +154,15 @@ require_once __DIR__ . '/includes/nav.php';
 </section>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
+
+<!-- AOS Initialization -->
+<script>
+  AOS.init({
+    once: true,       // ensures animations fire once
+    duration: 800,    // smooth animation duration
+    offset: 100       // trigger point
+  });
+</script>
+
 </body>
 </html>

@@ -70,30 +70,68 @@ require_once __DIR__ . '/includes/db.php';
     </h2>
     <div class="grid md:grid-cols-3 gap-10">
       <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-green-500">
-        <h3 class="text-2xl font-bold text-deepblue mb-6">Primary (Grades 1–6)</h3>
+        <h3 class="text-2xl font-bold text-deepblue mb-6">Certificate & Diploma Programs</h3>
         <ul class="space-y-4 text-gray-700">
-          <li>Birth Certificate</li>
+          <li>Completed Junior or Senior Secondary Education (minimum Grade 9 or Grade 12, depending on program)</li>
+          <li>Official School Leaving Certificate or Transcript</li>
+          <li>Entrance Assessment or Aptitude Test (to evaluate practical skills and program suitability)</li>
+          <li>Birth Certificate and National ID</li>
           <li>2 Passport Photographs</li>
-          <li>Previous School Report (if applicable)</li>
-          <li>Immunization Record</li>
+          <li>Birth Certificate or National ID</li>
         </ul>
       </div>
       <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-blue-500">
-        <h3 class="text-2xl font-bold text-deepblue mb-6">Junior Secondary (Grades 7–9)</h3>
+        <h3 class="text-2xl font-bold text-deepblue mb-6">Advanced Diploma / Higher National Diploma (HND)</h3>
         <ul class="space-y-4 text-gray-700">
-          <li>Primary School Leaving Certificate</li>
-          <li>Entrance Exam Result</li>
-          <li>Transfer Certificate</li>
-          <li>Recommendation Letter</li>
+          <li>Accredited Secondary School Certificate (Grade 12 completion)</li>
+          <li>Strong Academic Record in relevant subjects (Math, Science, or Technical courses)</li>
+          <li>Previous TVET Certificate/Diploma (if applying for advanced entry)</li>
+          <li>Recommendation Letter from school or employer (for experienced applicants)</li>
         </ul>
       </div>
       <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-purple-600">
-        <h3 class="text-2xl font-bold text-deepblue mb-6">Senior Secondary (Grades 10–12)</h3>
+        <h3 class="text-2xl font-bold text-deepblue mb-6">Specialized Vocational Programs (e.g., Engineering Trades, ICT, Hospitality)</h3>
         <ul class="space-y-4 text-gray-700">
-          <li>JSCE/BECE Result</li>
-          <li>Strong Academic Record</li>
-          <li>Subject Combination Form</li>
-          <li>Parent/Guardian Consent</li>
+          <li>Minimum educational qualification as specified by program (Grade 9 or Grade 12)</li>
+          <li>Practical Skills Assessment or Interview</li>
+          <li>Transfer Certificate (if coming from another institution)</li>
+          <li>Portfolio of prior work/experience (optional but advantageous)</li>
+          <li>Interview with faculty panel (may be required)</li>
+        </ul>
+      </div>
+    </div>
+    <br><br><br>
+    <div class="grid md:grid-cols-3 gap-10">
+      <div data-aos="fade-up" data-aos-delay="100" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-orange-500">
+        <h3 class="text-2xl font-bold text-deepblue mb-6">Undergraduate Programs</h3>
+        <ul class="space-y-4 text-gray-700">
+          <li>Completed Senior Secondary/High School Certificate</li>
+          <li>Official Academic Transcripts</li>
+          <li>Minimum required grades in relevant subjects (depending on program)</li>
+          <li>Entrance Examination or standardized test scores (if applicable)</li>
+          <li>2 Passport Photographs</li>
+          <li>Birth Certificate or National ID</li>
+        </ul>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-cyan-500">
+        <h3 class="text-2xl font-bold text-deepblue mb-6">Postgraduate Programs (Master’s Level)</h3>
+        <ul class="space-y-4 text-gray-700">
+          <li>Accredited Bachelor’s Degree Certificate</li>
+          <li>Official Undergraduate Transcripts</li>
+          <li>Minimum GPA requirement (varies by program)</li>
+          <li>Statement of Purpose (explaining academic and career goals)</li>
+          <li>Recommendation Letters (academic/professional referees)</li>
+        </ul>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="300" class="bg-white rounded-2xl shadow-xl p-8 border-t-8 border-red-600">
+        <h3 class="text-2xl font-bold text-deepblue mb-6">Doctoral Programs (PhD Level)</h3>
+        <ul class="space-y-4 text-gray-700">
+          <li>Accredited Master’s Degree Certificate</li>
+          <li>Official Postgraduate Transcripts</li>
+          <li>Detailed Research Proposal aligned with faculty expertise</li>
+          <li>Curriculum Vitae (CV) with academic publications (if any)</li>
+          <li>Recommendation Letters from academic supervisors</li>
+          <li>Interview with faculty panel (may be required)</li>
         </ul>
       </div>
     </div>
@@ -118,7 +156,7 @@ require_once __DIR__ . '/includes/db.php';
       </a>
     </div>
     <p class="mt-12 text-lg opacity-90">
-      Application Deadline: <strong>April 30, 2025</strong> • Limited Spaces Available
+      Application Deadline: <strong>April 30, 2026</strong> • Limited Spaces Available
     </p>
   </div>
 </section>
@@ -130,15 +168,16 @@ require_once __DIR__ . '/includes/db.php';
     <div class="grid md:grid-cols-3 gap-10">
       <div class="p-8 bg-cream rounded-2xl shadow-lg">
         <p class="font-bold text-deepblue text-xl">Call Admissions</p>
-        <p class="text-2xl mt-2">+234 800 123 4567</p>
+        <p class="text-2xl mt-2">0115-50-88-08/10 <br>
+Fax: 0115-50-89-01</p>
       </div>
       <div class="p-8 bg-cream rounded-2xl shadow-lg">
         <p class="font-bold text-deepblue text-xl">Email Us</p>
-        <p class="text-2xl mt-2">admissions@school.edu.ng</p>
+        <p class="text-2xl mt-2">info@admasuniversity.edu.et</p>
       </div>
       <div class="p-8 bg-cream rounded-2xl shadow-lg">
         <p class="font-bold text-deepblue text-xl">Visit Campus</p>
-        <p class="text-lg mt-2">123 Education Avenue, Lagos</p>
+        <p class="text-lg mt-2">Megenagna, Addis Ababa, Ethiopia</p>
       </div>
     </div>
   </div>

@@ -102,16 +102,7 @@ usort($items, fn($a,$b)=>strtotime($b['created_at'])-strtotime($a['created_at'])
               <div class="text-gray-700 mt-3 text-sm leading-relaxed"><?= $item['message'] ?></div>
             </div>
 
-            <div class="mt-4">
-              <?php if ($item['source'] === 'exam'): ?>
-                <a href="student/download_exam.php?id=<?= (int)$item['exam_id'] ?>" 
-                   class="inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold text-sm shadow transition transform hover:scale-105">
-                   Download Exam
-                </a>
-              <?php else: ?>
-                <a href="#" class="inline-block text-lightblue font-bold text-sm hover:text-midblue transition">Read More</a>
-              <?php endif; ?>
-            </div>
+            
           </div>
         </div>
       <?php endforeach; endif; ?>

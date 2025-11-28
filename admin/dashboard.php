@@ -196,7 +196,21 @@ $user = current_user();
         </div>
       </div>
 
-      <!-- 10. System Settings -->
+      <!-- 10. alumni & others -->
+      <div data-aos="fade-up" data-aos-delay="1000" class="group bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 border-t-4 border-cyan-700">
+        <div class="bg-gradient-to-br from-cyan-600 to-gray-800 p-8 text-white">
+          <i class="fas fa-cogs text-6xl opacity-90"></i>
+          <h3 class="text-2xl font-bold mt-4">Alumni & Contact Messages</h3>
+        </div>
+        <div class="p-8">
+          <p class="text-grey-600 mb-6">Alumni List, Edit, Contact Messages.</p>
+          <a href="admin_alumni_list.php" class="block text-center bg-cyan-700 text-white font-bold py-4 rounded-xl hover:bg-cyan-900 transition shadow-lg">
+            Open Alumni
+          </a>
+        </div>
+      </div>
+
+<!-- 11. System Settings -->
       <div data-aos="fade-up" data-aos-delay="1000" class="group bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 border-t-4 border-gray-700">
         <div class="bg-gradient-to-br from-gray-600 to-gray-800 p-8 text-white">
           <i class="fas fa-cogs text-6xl opacity-90"></i>
@@ -213,7 +227,6 @@ $user = current_user();
     </div>
   </main>
 
-  <?php require_once __DIR__ . '/../includes/footer.php'; ?>
 
   <script>
     AOS.init({ once: true, duration: 1000, easing: 'ease-out-quart' });

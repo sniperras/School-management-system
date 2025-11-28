@@ -59,7 +59,7 @@
             </div>
             <div>
               <p class="font-semibold">Phone</p>
-              <p class="text-lightblue">+251 911 223 344</p>
+              <p class="text-lightblue">0115-50-88-08/10</p>
             </div>
           </li>
           <li class="flex items-start gap-4">
@@ -68,7 +68,7 @@
             </div>
             <div>
               <p class="font-semibold">Email</p>
-              <p class="text-lightblue break-all">info@smschool.edu.et</p>
+              <p class="text-lightblue break-all">info@admasuniversity.edu.et</p>
             </div>
           </li>
           <li class="flex items-start gap-4">
@@ -77,7 +77,7 @@
             </div>
             <div>
               <p class="font-semibold">Location</p>
-              <p class="text-lightblue">Addis Ababa, Ethiopia</p>
+              <p class="text-lightblue">Megenagna, Addis Ababa, Ethiopia</p>
             </div>
           </li>
         </ul>
@@ -91,16 +91,16 @@
         </h3>
         
         <div class="flex justify-center md:justify-start gap-5 text-3xl mb-8">
-          <a href="#" class="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center hover:bg-lightblue hover:text-deepblue transition transform hover:scale-110">
+          <a href="https://www.facebook.com/ahadutechoffical" target="_blank" class="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center hover:bg-lightblue hover:text-deepblue transition transform hover:scale-110">
             <i class="fab fa-facebook-f"></i>
           </a>
-          <a href="#" class="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center hover:bg-lightblue hover:text-deepblue transition transform hover:scale-110">
+          <a href="https://t.me/AhaduTech" target="_blank" class="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center hover:bg-lightblue hover:text-deepblue transition transform hover:scale-110">
             <i class="fab fa-telegram"></i>
           </a>
-          <a href="#" class="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center hover:bg-lightblue hover:text-deepblue transition transform hover:scale-110">
+          <a href="https://www.linkedin.com/in/natnael-bizuneh-zenebe/" target="_blank" class="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center hover:bg-lightblue hover:text-deepblue transition transform hover:scale-110">
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a href="#" class="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center hover:bg-lightblue hover:text-deepblue transition transform hover:scale-110">
+          <a href="https://www.youtube.com/c/AhaduTech" target="_blank" class="w-14 h-14 bg-white/10 backdrop-blur rounded-full flex items-center justify-center hover:bg-lightblue hover:text-deepblue transition transform hover:scale-110">
             <i class="fab fa-youtube"></i>
           </a>
         </div>
@@ -121,9 +121,16 @@
         © <?= date('Y') ?> <span class="text-lightblue font-bold">School Management System</span>. 
         All rights reserved.
       </p>
-      <p class="text-sm opacity-80 mt-3">
-        Crafted with <i class="fas fa-heart text-red-500 animate-pulse"></i> for the Future of Education
-      </p>
+     <a href="https://github.com/NattyXO" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   class="text-sm opacity-80 mt-3">
+  Crafted with <i class="fas fa-heart text-red-500 animate-pulse"></i> for the Future of Education <a href="https://github.com/NattyXO" target="_blank" rel="noopener noreferrer">
+  <i class="fab fa-github text-2xl hover:text-gray-700"></i>
+</a>
+
+</a>
+
     </div>
   </div>
 </footer>
