@@ -264,7 +264,23 @@ if (!function_exists('pagi_query')) {
         ];
     }
 }
+function get_grade($percent) {
+    if ($percent >= 90) return "A+";
+    if ($percent >= 80) return "A";
+    if ($percent >= 70) return "B";
+    if ($percent >= 60) return "C";
+    if ($percent >= 50) return "D";
+    return "F";
+}
 
+function calculate_gpa($percent) {
+    if ($percent >= 90) return 4.0;
+    if ($percent >= 80) return 3.7;
+    if ($percent >= 70) return 3.3;
+    if ($percent >= 60) return 3.0;
+    if ($percent >= 50) return 2.0;
+    return 0.0;
+}
 // You can add other small helper functions here later
 // But never redeclare csrf_token(), check_csrf(), is_logged_in(), etc.
 // → those live only in auth.php now

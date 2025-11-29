@@ -161,19 +161,7 @@ $user = current_user();
         </div>
       </div>
 
-      <!-- Announcements -->
-      <div data-aos="fade-up" data-aos-delay="500" class="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-gray-100 overflow-hidden">
-        <div class="bg-gradient-to-br from-teal-500 to-cyan-600 p-6 text-white">
-          <i class="fas fa-bullhorn text-5xl opacity-90"></i>
-          <h3 class="text-2xl font-bold mt-4">Announcements</h3>
-        </div>
-        <div class="p-8">
-          <p class="text-gray-600 mb-6">Stay updated with school news, events, and notices.</p>
-          <a href="../announcements.php" class="inline-block bg-teal-600 text-white font-bold px-8 py-4 rounded-xl hover:bg-cyan-700 transition transform hover:scale-105 shadow-lg">
-            Read Announcements
-          </a>
-        </div>
-      </div>
+    
 
       <!-- Profile -->
       <div data-aos="fade-up" data-aos-delay="600" class="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-3 border border-gray-100 overflow-hidden">
