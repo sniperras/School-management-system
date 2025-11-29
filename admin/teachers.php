@@ -373,5 +373,3 @@ function openSubjectModal(id, name, level) {
     document.getElementById('subjectModal').classList.remove('hidden');
 }
 </script>
-
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>

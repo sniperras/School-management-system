@@ -247,5 +247,3 @@ $teachers = $pdo->query("SELECT id, teacher_id, first_name, last_name, departmen
         </div>
     </div>
 </div>
-
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>

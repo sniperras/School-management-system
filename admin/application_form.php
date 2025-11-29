@@ -299,5 +299,3 @@ function toggleFields() {
     document.getElementById('mastersFields').classList.toggle('hidden', program !== 'Masters');
 }
 </script>
-
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>

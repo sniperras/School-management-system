@@ -199,7 +199,7 @@ $user = current_user();
       <!-- 10. alumni & others -->
       <div data-aos="fade-up" data-aos-delay="1000" class="group bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 border-t-4 border-cyan-700">
         <div class="bg-gradient-to-br from-cyan-600 to-gray-800 p-8 text-white">
-          <i class="fas fa-cogs text-6xl opacity-90"></i>
+          <i class="fas fa-users text-6xl opacity-90"></i>
           <h3 class="text-2xl font-bold mt-4">Alumni & Contact Messages</h3>
         </div>
         <div class="p-8">
@@ -210,7 +210,27 @@ $user = current_user();
         </div>
       </div>
 
-<!-- 11. System Settings -->
+    <!-- 11. reports -->
+<div data-aos="fade-up" data-aos-delay="1000" 
+     class="group bg-white rounded-2xl shadow-2xl hover:shadow-3xl 
+            transition-all duration-500 transform hover:-translate-y-4 
+            border-t-4 border-yellow-900">
+  <div class="bg-gradient-to-br from-yellow-700 to-yellow-900 p-8 text-white">
+    <i class="fas fa-chart-line text-6xl opacity-90"></i>
+    <h3 class="text-2xl font-bold mt-4">Reports</h3>
+  </div>
+  <div class="p-8">
+    <p class="text-yellow-900 mb-6">View Teachers, Students, and System Report.</p>
+    <a href="admin_reports.php" 
+       class="block text-center bg-yellow-800 text-white font-bold py-4 rounded-xl 
+              hover:bg-yellow-900 transition shadow-lg">
+      Open Reports
+    </a>
+  </div>
+</div>
+
+
+<!-- 12. System Settings -->
       <div data-aos="fade-up" data-aos-delay="1000" class="group bg-white rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-4 border-t-4 border-gray-700">
         <div class="bg-gradient-to-br from-gray-600 to-gray-800 p-8 text-white">
           <i class="fas fa-cogs text-6xl opacity-90"></i>

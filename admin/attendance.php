@@ -242,5 +242,3 @@ $teacher_rows = $teacher_att->fetchAll();
         </div>
     </div>
 </div>
-
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>
